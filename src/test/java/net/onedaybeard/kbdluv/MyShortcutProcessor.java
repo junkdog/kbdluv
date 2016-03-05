@@ -1,7 +1,10 @@
 package net.onedaybeard.kbdluv;
 
+import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.World;
+import com.artemis.WorldConfiguration;
+import com.artemis.managers.TagManager;
 import net.onedaybeard.kbdluv.component.ComponentA;
 import net.onedaybeard.kbdluv.component.ComponentB;
 
@@ -17,13 +20,15 @@ public class MyShortcutProcessor extends ShortcutProcessor {
 	public boolean failOnNullEntity = true;
 	public boolean componentInvoked;
 
+	public TagManager tags;
+	public ComponentMapper<ComponentA> componentAMapper;
+
 	public MyShortcutProcessor() {
-		super();
-		World w = new World();
-		entity = w.createEntity();
+		super(new World(new WorldConfiguration().setSystem(TagManager.class)));
+		entity = world.createEntity();
 		entity.edit().create(ComponentA.class);
 
-		w.process();
+		world.process();
 	}
 
 	@Override

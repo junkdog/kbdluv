@@ -4,9 +4,18 @@ import com.badlogic.gdx.Input;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class ShortcutProcessorTest {
+	@Test
+	public void auto_wired_test() {
+		MyShortcutProcessor ip = new MyShortcutProcessor();
+
+		assertNotNull(ip.componentAMapper);
+		assertNotNull(ip.tags);
+	}
+
 	@Test
 	public void zero_param_invokation_test() {
 		MyShortcutProcessor ip = new MyShortcutProcessor();

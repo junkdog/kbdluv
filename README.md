@@ -22,15 +22,13 @@ Easy shortcuts for libgdx/artemis.
 import static com.badlogic.gdx.Input.Keys.*;
 
 public class MyShortcuts extends ShortcutProcessor {
-    private final World world;
 
-    // while an artemis world isn't strictly necessary, they
-    // tend to be pretty handy in this context.
+    // shortcuts processors are auto-wiring
+    private ComonentMapper<Position> positionMapper;
+    private TagManager tagManager;
+
     public MyShortcuts(World world) {
-        // if this class had any injectable fields, now would
-        // be a good time to inject
-        world.inject(this);
-        this.world = world;
+        super(world);
     }
 
     /**

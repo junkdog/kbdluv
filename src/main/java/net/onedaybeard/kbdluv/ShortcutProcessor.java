@@ -1,6 +1,7 @@
 package net.onedaybeard.kbdluv;
 
 import com.artemis.Entity;
+import com.artemis.World;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.IntMap;
 import net.onedaybeard.kbdluv.reflect.MethodInvoker;
@@ -25,9 +26,12 @@ public abstract class ShortcutProcessor extends InputAdapter {
 
 	private int modState;
 	private boolean consumedEvent;
+	protected World world;
 
-	protected ShortcutProcessor() {
+	protected ShortcutProcessor(World world) {
 		shortcuts = registerShortcuts();
+		this.world = world;
+		world.inject(this);
 	}
 
 	protected abstract Entity getEntity();
