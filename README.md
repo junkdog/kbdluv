@@ -9,7 +9,11 @@ Easy shortcuts for libgdx/artemis.
 - Implement `getEntity()`
  - `getEntity` can return null if no shortcut methods take an Entity
    or Component parameter
-- Create a method, annotate it with `@Shortcut`
+- Create a method, annotate it with `@Shortcut`. Method can take 4 forms:
+  1. `zeroarguments()`
+  1. `withEntity(Entity e)` (see getEntity())
+  1. `withEntityAndComponent(Entity e, Position posiiton)`
+  1. `withComponent(Position posiiton)`
 - Register the input processor as you normally would.
 
 
