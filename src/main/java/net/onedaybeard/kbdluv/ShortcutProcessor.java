@@ -15,12 +15,10 @@ import static com.badlogic.gdx.Input.Keys.SHIFT_LEFT;
 
 public abstract class ShortcutProcessor extends InputAdapter {
 
-	// encoding Input.Keys value as 2nd byte, sorting according
-	// to shortcuts is easier that way, assuming primary keys are
-	// more conceptually better grouped than CTRL/ALT/SHIFT.
-	public static final int MOD_CTRL = 1 << 8;
-	public static final int MOD_ALT = 1 << 1;
-	public static final int MOD_SHIFT = 1 << 2;
+	// encoding Input.Keys value as 1st byte
+	public static final int MOD_CTRL  = 1 << 8;
+	public static final int MOD_ALT   = 1 << 9;
+	public static final int MOD_SHIFT = 1 << 10;
 
 	private final IntMap<MethodInvoker> shortcuts;
 
