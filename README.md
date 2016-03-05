@@ -2,14 +2,15 @@
 
 Easy shortcuts for libgdx/artemis.
 
+
 #### Usage
 
 - Extend ShortcutProcessor
-- Implement getEntity
- - This step can be skipped if no shortcut methods
-   take an Entity or Component parameter
+- Implement `getEntity()`
+ - `getEntity` can return null if no shortcut methods take an Entity
+   or Component parameter
 - Create a method, annotate it with `@Shortcut`
-- Register as you normally would.
+- Register the input processor as you normally would.
 
 
 #### Example
@@ -23,11 +24,11 @@ import static com.badlogic.gdx.Input.Keys.*;
 public class MyShortcuts extends ShortcutProcessor {
     private final World world;
 
-    // while a world isn't strictly necessary, they're
+    // while an artemis world isn't strictly necessary, they
     // tend to be pretty handy in this context.
     public MyShortcuts(World world) {
-        // if this class hadany injectable fields, now would
-        //  be a good time to inject
+        // if this class had any injectable fields, now would
+        // be a good time to inject
         world.inject(this);
         this.world = world;
     }
@@ -38,8 +39,8 @@ public class MyShortcuts extends ShortcutProcessor {
      */
     @Override
     protected Entity getEntity() {
-        // it up to you to define how entities are resolved (from cursor position,
-        // last selected, from a list, etc).
+        // how entities are resolved (from cursor position, last selected,
+        // from a list, etc) is up to you
         return world.getSystem(MyEntityTrackerSystem.class).getHoveredEntity();
     }
 
@@ -49,6 +50,7 @@ public class MyShortcuts extends ShortcutProcessor {
         System.out.println("hi");
     }
 
+	// MOD_ fields live in ShortcutProcessor
     @Shortcut(MOD_SHIFT | B) // left and right modifier keys are treated equally
     private void doSomethingWith(Entity e) {
         // only invoked if getEntity() != null
