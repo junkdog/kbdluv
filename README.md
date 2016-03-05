@@ -19,6 +19,10 @@ Easy shortcuts for libgdx/artemis.
 
 #### Example
 
+Method parameters for shortcuts are guaranteed to never be null.
+If any parameter can't be inferred, the shortcut method is not
+invoked.
+
 
 ```java
 
@@ -41,31 +45,30 @@ public class MyShortcuts extends ShortcutProcessor {
      */
     @Override
     protected Entity getEntity() {
-        // how entities are resolved (from cursor position, last selected,
-        // from a list, etc) is up to you
-        return world.getSystem(MyEntityTrackerSystem.class).getHoveredEntity();
+        // how entities are resolved is up to you is up to you
+        return world.getSystem(FooBarEntityTrackerSystem.class).getHoveredEntity();
     }
 
     // 'A' - note "import static com.badlogic.gdx.Input.Keys.*;"
     @Shortcut(A)
     private void shortcutWithNoParameters() {
-        System.out.println("hi");
+        // ...
     }
 
 	// MOD_ fields live in ShortcutProcessor
     @Shortcut(MOD_SHIFT | B) // left and right modifier keys are treated equally
     private void doSomethingWith(Entity e) {
-        // only invoked if getEntity() != null
+        // ...
     }
 
     @Shortcut(MOD_CTRL | MOD_SHIFT | C) // combine multiple modifier keys
     private void entityAndComponent(Entity owner, ComponentA componentOfOwner) {
-        // only invoked if both parameters are non-null
+        // ...
     }
 
     @Shortcut(MOD_ALT | D) // same as above, but omits the Entity
     private void justTheComponent(ComponentA comp) {
-        // only invoked if comp != null
+        // ...
     }
 }
 
