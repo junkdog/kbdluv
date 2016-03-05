@@ -27,7 +27,7 @@ import static com.badlogic.gdx.Input.Keys.*;
 
 public class MyShortcuts extends ShortcutProcessor {
 
-    // shortcuts processors are auto-wiring
+    // shortcut processors are auto-wiring
     private ComonentMapper<Position> positionMapper;
     private TagManager tagManager;
 
