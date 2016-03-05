@@ -59,12 +59,12 @@ public class MyShortcuts extends ShortcutProcessor {
     }
 
     @Shortcut(MOD_CTRL | MOD_SHIFT | C) // combine multiple modifier keys
-    private void entity_component_a(Entity owner, ComponentA componentOfOwner) {
+    private void entityAndComponent(Entity owner, ComponentA componentOfOwner) {
         // only invoked if both parameters are non-null
     }
 
     @Shortcut(MOD_ALT | D) // same as above, but omits the Entity
-    private void component_a(ComponentA comp) {
+    private void justTheComponent(ComponentA comp) {
         // only invoked if comp != null
     }
 }
