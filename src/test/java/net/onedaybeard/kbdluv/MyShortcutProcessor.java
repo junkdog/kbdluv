@@ -66,8 +66,6 @@ public class MyShortcutProcessor extends ShortcutProcessor {
 
 	@Shortcut(E)
 	private void component_b(Entity e, ComponentB comp) {
-		componentInvoked = true;
-		if (comp == null)
-			fail("Component was null");
+		fail("shoudln't be here");
 	}
 }

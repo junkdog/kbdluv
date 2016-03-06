@@ -55,9 +55,6 @@ public class ShortcutProcessorTest {
 	@Test
 	public void null_component_param_no_invokation_test() {
 		MyShortcutProcessor ip = new MyShortcutProcessor();
-
-		assertFalse(ip.componentInvoked);
 		ip.processKeyState(Input.Keys.E);
-		assertFalse(ip.componentInvoked);
 	}
 }

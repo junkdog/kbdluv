@@ -27,7 +27,11 @@ public abstract class ShortcutProcessor extends InputAdapter {
 	protected World world;
 
 	protected ShortcutProcessor(World world) {
-		shortcuts = registerShortcuts(new MethodInvokerFactory());
+		this(world, null);
+	}
+
+	protected ShortcutProcessor(World world, MethodInvokerFactory.Factory... additional) {
+		shortcuts = registerShortcuts(new MethodInvokerFactory(additional));
 		this.world = world;
 		world.inject(this);
 	}

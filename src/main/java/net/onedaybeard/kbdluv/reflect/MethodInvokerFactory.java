@@ -16,6 +16,17 @@ public final class MethodInvokerFactory {
 		factories.add(new StandardInvoker.Factory());
 	}
 
+	public MethodInvokerFactory(Factory... additional) {
+		this();
+
+		if (additional == null)
+			return;
+
+		for (int i = 0; i < additional.length; i++) {
+			factories.add(additional[i]);
+		}
+	}
+
 	public MethodInvoker create(Object obj, Method method) {
 		Class<?>[] types = method.getParameterTypes();
 		for (Factory factory : factories) {
