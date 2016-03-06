@@ -24,4 +24,16 @@ public class ComponentInvoker extends MethodInvoker {
 	public boolean evaluate(Entity e) {
 		return e != null && e.getComponent(type) != null;
 	}
+
+	public static class Factory extends MethodInvokerFactory.Factory {
+		@Override
+		public boolean checkParameters(Class<?>[] types) {
+			return types.length == 1 && isComponent(types[0]);
+		}
+
+		@Override
+		public MethodInvoker create(Object obj, Method method) {
+			return new ComponentInvoker(obj, method);
+		}
+	}
 }

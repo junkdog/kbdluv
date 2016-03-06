@@ -21,4 +21,16 @@ public class EntityInvoker extends MethodInvoker {
 	public boolean evaluate(Entity e) {
 		return e != null;
 	}
+
+	public static class Factory extends MethodInvokerFactory.Factory {
+		@Override
+		public boolean checkParameters(Class<?>[] types) {
+			return types.length == 1 && isEntity(types[0]);
+		}
+
+		@Override
+		public MethodInvoker create(Object obj, Method method) {
+			return new EntityInvoker(obj, method);
+		}
+	}
 }

@@ -27,21 +27,21 @@ public abstract class ShortcutProcessor extends InputAdapter {
 	protected World world;
 
 	protected ShortcutProcessor(World world) {
-		shortcuts = registerShortcuts();
+		shortcuts = registerShortcuts(new MethodInvokerFactory());
 		this.world = world;
 		world.inject(this);
 	}
 
 	protected abstract Entity getEntity();
 
-	private IntMap<MethodInvoker> registerShortcuts() {
+	private IntMap<MethodInvoker> registerShortcuts(MethodInvokerFactory factory) {
 		IntMap<MethodInvoker> shortcuts = new IntMap<>();
 
 		Method[] methods = getClass().getDeclaredMethods();
 		for (Method method : methods) {
 			Shortcut shortCut = method.getAnnotation(Shortcut.class);
 			if (shortCut != null) {
-				MethodInvoker invoker = MethodInvokerFactory.create(this, method);
+				MethodInvoker invoker = factory.create(this, method);
 				shortcuts.put(shortCut.value(), invoker);
 			}
 		}

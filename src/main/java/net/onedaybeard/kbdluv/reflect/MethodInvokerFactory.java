@@ -2,24 +2,29 @@ package net.onedaybeard.kbdluv.reflect;
 
 import com.artemis.Component;
 import com.artemis.Entity;
+import com.badlogic.gdx.utils.Array;
 
 import java.lang.reflect.Method;
 
 public final class MethodInvokerFactory {
-	private MethodInvokerFactory() {}
+	public Array<Factory> factories = new Array<>();
 
-	public static MethodInvoker create(Object obj, Method method) {
+	public MethodInvokerFactory() {
+		factories.add(new ComponentInvoker.Factory());
+		factories.add(new EntityComponentInvoker.Factory());
+		factories.add(new EntityInvoker.Factory());
+		factories.add(new StandardInvoker.Factory());
+	}
+
+	public MethodInvoker create(Object obj, Method method) {
 		Class<?>[] types = method.getParameterTypes();
-		if (types.length == 0)
-			return new StandardInvoker(obj, method);
-		if (types.length == 1 && isEntity(types[0]))
-			return new EntityInvoker(obj, method);
-		if (types.length == 1 && isComponent(types[0]))
-			return new ComponentInvoker(obj, method);
-		if (types.length == 2 && isEntity(types[0]) && isComponent(types[1]))
-			return new EntityComponentInvoker(obj, method);
+		for (Factory factory : factories) {
+			if (factory.checkParameters(types)) {
+				return factory.create(obj, method);
+			}
+		}
 
-		throw new RuntimeException("can't parse invoker for " + method);
+		throw new RuntimeException("can't create invoker for " + method);
 	}
 
 	private static boolean isEntity(Class<?> type) {
@@ -28,5 +33,19 @@ public final class MethodInvokerFactory {
 
 	private static boolean isComponent(Class<?> type) {
 		return Component.class.isAssignableFrom(type);
+	}
+
+	public static abstract class Factory {
+		abstract boolean checkParameters(Class<?>[] types);
+		abstract MethodInvoker create(Object obj, Method method);
+
+
+		public static boolean isEntity(Class<?> type) {
+			return Entity.class == type;
+		}
+
+		public static boolean isComponent(Class<?> type) {
+			return Component.class.isAssignableFrom(type);
+		}
 	}
 }
