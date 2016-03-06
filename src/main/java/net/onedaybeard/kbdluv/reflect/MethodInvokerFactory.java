@@ -27,14 +27,6 @@ public final class MethodInvokerFactory {
 		throw new RuntimeException("can't create invoker for " + method);
 	}
 
-	private static boolean isEntity(Class<?> type) {
-		return Entity.class == type;
-	}
-
-	private static boolean isComponent(Class<?> type) {
-		return Component.class.isAssignableFrom(type);
-	}
-
 	public static abstract class Factory {
 		abstract boolean checkParameters(Class<?>[] types);
 		abstract MethodInvoker create(Object obj, Method method);

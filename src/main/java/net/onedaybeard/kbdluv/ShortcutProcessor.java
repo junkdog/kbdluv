@@ -64,9 +64,9 @@ public abstract class ShortcutProcessor extends InputAdapter {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		boolean old = consumedEvent;
+		boolean wasConsumed = consumedEvent;
 		consumedEvent = false;
-		return old;
+		return wasConsumed;
 	}
 
 	boolean processKeyState(int state) {
