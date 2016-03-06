@@ -41,7 +41,7 @@ public abstract class ShortcutProcessor extends InputAdapter {
 		for (Method method : methods) {
 			Shortcut shortCut = method.getAnnotation(Shortcut.class);
 			if (shortCut != null) {
-				MethodInvoker invoker = MethodInvokerFactory.create(method);
+				MethodInvoker invoker = MethodInvokerFactory.create(this, method);
 				shortcuts.put(shortCut.value(), invoker);
 			}
 		}
@@ -72,8 +72,9 @@ public abstract class ShortcutProcessor extends InputAdapter {
 	boolean processKeyState(int state) {
 		MethodInvoker m = shortcuts.get(state);
 		try {
-			if (m != null && m.evaluate(getEntity())) {
-				m.invoke(this, getEntity());
+			Entity entity = getEntity();
+			if (m != null && m.evaluate(entity)) {
+				m.invoke(entity);
 				consumedEvent = true;
 				return true;
 			} else {

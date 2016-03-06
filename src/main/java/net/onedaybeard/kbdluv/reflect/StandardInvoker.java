@@ -7,12 +7,12 @@ import java.lang.reflect.Method;
 public class StandardInvoker extends MethodInvoker {
 	private static final Object[] PARAMS = new Object[0];
 
-	StandardInvoker(Method method) {
-		super(method);
+	StandardInvoker(Object obj, Method method) {
+		super(obj, method);
 	}
 
 	@Override
-	public void invoke(Object obj, Entity e) throws ReflectiveOperationException {
+	public void invoke(Entity e) throws ReflectiveOperationException {
 		method.invoke(obj, PARAMS);
 	}
 

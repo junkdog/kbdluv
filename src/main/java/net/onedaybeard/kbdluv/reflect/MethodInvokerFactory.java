@@ -8,16 +8,16 @@ import java.lang.reflect.Method;
 public final class MethodInvokerFactory {
 	private MethodInvokerFactory() {}
 
-	public static MethodInvoker create(Method method) {
+	public static MethodInvoker create(Object obj, Method method) {
 		Class<?>[] types = method.getParameterTypes();
 		if (types.length == 0)
-			return new StandardInvoker(method);
+			return new StandardInvoker(obj, method);
 		if (types.length == 1 && isEntity(types[0]))
-			return new EntityInvoker(method);
+			return new EntityInvoker(obj, method);
 		if (types.length == 1 && isComponent(types[0]))
-			return new ComponentInvoker(method);
+			return new ComponentInvoker(obj, method);
 		if (types.length == 2 && isEntity(types[0]) && isComponent(types[1]))
-			return new EntityComponentInvoker(method);
+			return new EntityComponentInvoker(obj, method);
 
 		throw new RuntimeException("can't parse invoker for " + method);
 	}

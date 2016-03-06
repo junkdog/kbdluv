@@ -10,7 +10,7 @@ import static net.onedaybeard.kbdluv.ShortcutProcessor.MOD_ALT;
 import static net.onedaybeard.kbdluv.ShortcutProcessor.MOD_CTRL;
 import static net.onedaybeard.kbdluv.ShortcutProcessor.MOD_SHIFT;
 
-public final class InputUtil {
+public final class ShortcutUtil {
 
 	private static final StringBuilder _sb = new StringBuilder();
 	private static final IntMap<String> keyToString;
@@ -18,24 +18,7 @@ public final class InputUtil {
 		keyToString = getKeyNames();
 	}
 
-
-	private InputUtil() {}
-
-	private static IntMap<String> getKeyNames() {
-		IntMap<String> keyToString = new IntMap<>();
-		try {
-			for (Field f : Input.Keys.class.getFields()) {
-				if (f.getName().startsWith("META_"))
-					continue;
-
-				f.setAccessible(true);
-				keyToString.put((int) f.get(null), f.getName());
-			}
-		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
-		return keyToString;
-	}
+	private ShortcutUtil() {}
 
 	public static String toString(Method method) {
 		Shortcut shortcut = method.getAnnotation(Shortcut.class);
@@ -53,5 +36,21 @@ public final class InputUtil {
 		_sb.append(keyToString.get(shortcut.value() & 0xff));
 
 		return _sb.toString();
+	}
+
+	private static IntMap<String> getKeyNames() {
+		IntMap<String> keyToString = new IntMap<>();
+		try {
+			for (Field f : Input.Keys.class.getFields()) {
+				if (f.getName().startsWith("META_"))
+					continue;
+
+				f.setAccessible(true);
+				keyToString.put((int) f.get(null), f.getName());
+			}
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException(e);
+		}
+		return keyToString;
 	}
 }

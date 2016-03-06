@@ -9,13 +9,13 @@ public class ComponentInvoker extends MethodInvoker {
 	private static final Object[] PARAMS = new Object[1];
 	private final Class<? extends Component> type;
 
-	ComponentInvoker(Method method) {
-		super(method);
+	ComponentInvoker(Object obj, Method method) {
+		super(obj, method);
 		type = (Class<? extends Component>) method.getParameterTypes()[0];
 	}
 
 	@Override
-	public void invoke(Object obj, Entity e) throws ReflectiveOperationException {
+	public void invoke(Entity e) throws ReflectiveOperationException {
 		PARAMS[0] = e.getComponent(type);
 		method.invoke(obj, PARAMS);
 	}
