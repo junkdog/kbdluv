@@ -19,9 +19,6 @@ public final class MethodInvokerFactory {
 	public MethodInvokerFactory(Factory... additional) {
 		this();
 
-		if (additional == null)
-			return;
-
 		for (int i = 0; i < additional.length; i++) {
 			factories.add(additional[i]);
 		}
@@ -35,7 +32,7 @@ public final class MethodInvokerFactory {
 			}
 		}
 
-		throw new RuntimeException("can't create invoker for " + method);
+		return null;
 	}
 
 	public static abstract class Factory {

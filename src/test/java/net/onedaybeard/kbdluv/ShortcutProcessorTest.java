@@ -3,6 +3,8 @@ package net.onedaybeard.kbdluv;
 import com.badlogic.gdx.Input;
 import org.junit.Test;
 
+import static net.onedaybeard.kbdluv.ShortcutProcessor.MOD_CTRL;
+import static net.onedaybeard.kbdluv.ShortcutProcessor.MOD_SHIFT;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -21,7 +23,7 @@ public class ShortcutProcessorTest {
 		MyShortcutProcessor ip = new MyShortcutProcessor();
 
 		assertFalse(ip.emptyArgInvoked);
-		ip.processKeyState(Input.Keys.A);
+		ip.processKeyState(MOD_CTRL | MOD_SHIFT | Input.Keys.A);
 		assertTrue(ip.emptyArgInvoked);
 	}
 

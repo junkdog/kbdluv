@@ -46,7 +46,9 @@ public abstract class ShortcutProcessor extends InputAdapter {
 			Shortcut shortCut = method.getAnnotation(Shortcut.class);
 			if (shortCut != null) {
 				MethodInvoker invoker = factory.create(this, method);
-				shortcuts.put(shortCut.value(), invoker);
+				if (invoker != null) {
+					shortcuts.put(shortCut.value(), invoker);
+				}
 			}
 		}
 
