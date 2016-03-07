@@ -4,9 +4,11 @@ import com.artemis.ComponentMapper;
 import com.artemis.Entity;
 import com.artemis.World;
 import com.artemis.WorldConfiguration;
+import com.artemis.managers.GroupManager;
 import com.artemis.managers.TagManager;
 import net.onedaybeard.kbdluv.component.ComponentA;
 import net.onedaybeard.kbdluv.component.ComponentB;
+import net.onedaybeard.kbdluv.reflect.MethodInvokerFactory;
 
 import static com.badlogic.gdx.Input.Keys.*;
 import static org.junit.Assert.fail;
@@ -20,11 +22,17 @@ public class MyShortcutProcessor extends ShortcutProcessor {
 	public boolean failOnNullEntity = true;
 	public boolean componentInvoked;
 
+	public boolean customSystem;
+
 	public TagManager tags;
 	public ComponentMapper<ComponentA> componentAMapper;
 
 	public MyShortcutProcessor() {
-		super(new World(new WorldConfiguration().setSystem(TagManager.class)));
+		this(new MethodInvokerFactory());
+	}
+
+	public MyShortcutProcessor(MethodInvokerFactory factory) {
+		super(new World(new WorldConfiguration().setSystem(TagManager.class)), factory);
 		entity = world.createEntity();
 		entity.edit().create(ComponentA.class);
 
@@ -36,7 +44,7 @@ public class MyShortcutProcessor extends ShortcutProcessor {
 		return entity;
 	}
 
-	@Shortcut(A)
+	@Shortcut(MOD_CTRL | MOD_SHIFT | A)
 	private void emptyArg() {
 		emptyArgInvoked = true;
 	}
@@ -66,6 +74,16 @@ public class MyShortcutProcessor extends ShortcutProcessor {
 
 	@Shortcut(E)
 	private void component_b(Entity e, ComponentB comp) {
+		fail("shoudln't be here");
+	}
+
+	@Shortcut(F)
+	private void custom_pass_system(TagManager tags) {
+		customSystem = true;
+	}
+
+	@Shortcut(MOD_SHIFT | F)
+	private void custom_dont_pass_system(GroupManager shouldBeNull) {
 		fail("shoudln't be here");
 	}
 }

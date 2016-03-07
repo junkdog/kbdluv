@@ -39,8 +39,8 @@ public final class MethodInvokerFactory {
 	}
 
 	public static abstract class Factory {
-		abstract boolean checkParameters(Class<?>[] types);
-		abstract MethodInvoker create(Object obj, Method method);
+		abstract protected boolean checkParameters(Class<?>[] types);
+		abstract protected MethodInvoker create(Object obj, Method method);
 
 
 		public static boolean isEntity(Class<?> type) {
