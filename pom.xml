@@ -8,7 +8,7 @@
 	<artifactId>kbdluv-artemis</artifactId>
 	<name>kbdluv-artemis</name>
 	<version>0.1.0-SNAPSHOT</version>
-	<description>shortcuts for libgdx/artemis</description>
+	<description>shortcuts for libgdx/artemis-odb</description>
 
 	<properties>
 		<gdx.version>1.9.2</gdx.version>
