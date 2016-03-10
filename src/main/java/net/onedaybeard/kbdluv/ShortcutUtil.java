@@ -2,6 +2,7 @@ package net.onedaybeard.kbdluv;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.IntMap;
+import net.onedaybeard.kbdluv.ShortcutProcessor.Shortcut;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

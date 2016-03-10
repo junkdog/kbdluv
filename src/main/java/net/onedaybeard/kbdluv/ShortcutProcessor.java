@@ -7,6 +7,10 @@ import com.badlogic.gdx.utils.IntMap;
 import net.onedaybeard.kbdluv.reflect.MethodInvoker;
 import net.onedaybeard.kbdluv.reflect.MethodInvokerFactory;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.lang.reflect.Method;
 
 import static com.badlogic.gdx.Input.Keys.ALT_LEFT;
@@ -14,6 +18,11 @@ import static com.badlogic.gdx.Input.Keys.CONTROL_LEFT;
 import static com.badlogic.gdx.Input.Keys.SHIFT_LEFT;
 
 public abstract class ShortcutProcessor extends InputAdapter {
+	@Retention(RetentionPolicy.RUNTIME)
+	@Target(ElementType.METHOD)
+	public @interface Shortcut {
+		int value();
+	}
 
 	// encoding Input.Keys value as 1st byte
 	public static final int MOD_CTRL  = 1 << 8;
@@ -28,6 +37,10 @@ public abstract class ShortcutProcessor extends InputAdapter {
 
 	protected ShortcutProcessor(World world) {
 		this(world, new MethodInvokerFactory());
+	}
+
+	protected ShortcutProcessor(World world, MethodInvokerFactory.Factory... additional) {
+		this(world, new MethodInvokerFactory(additional));
 	}
 
 	protected ShortcutProcessor(World world, MethodInvokerFactory factory) {
@@ -57,10 +70,10 @@ public abstract class ShortcutProcessor extends InputAdapter {
 
 	@Override
 	public final boolean keyDown(int keycode) {
-		if (isModKey(ALT_LEFT, keycode)) {
-			modState |= MOD_ALT;
-		} else if (isModKey(CONTROL_LEFT, keycode)) {
+		if (isModKey(CONTROL_LEFT, keycode)) {
 			modState |= MOD_CTRL;
+		} else if (isModKey(ALT_LEFT, keycode)) {
+			modState |= MOD_ALT;
 		} else if (isModKey(SHIFT_LEFT, keycode)) {
 			modState |= MOD_SHIFT;
 		}
@@ -71,6 +84,15 @@ public abstract class ShortcutProcessor extends InputAdapter {
 	@Override
 	public boolean keyUp(int keycode) {
 		boolean wasConsumed = consumedEvent;
+
+		if (isModKey(CONTROL_LEFT, keycode)) {
+			modState ^= MOD_CTRL;
+		} else if (isModKey(ALT_LEFT, keycode)) {
+			modState ^= MOD_ALT;
+		} else if (isModKey(SHIFT_LEFT, keycode)) {
+			modState ^= MOD_SHIFT;
+		}
+
 		consumedEvent = false;
 		return wasConsumed;
 	}
