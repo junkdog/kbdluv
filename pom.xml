@@ -28,6 +28,13 @@
 		<system>GitHub Issues</system>
 	</issueManagement>
 
+	<scm>
+		<url>https://github.com/junkdog/kbdluv/</url>
+		<connection>scm:git:git@github.com:junkdog//kbdluv.git</connection>
+		<developerConnection>scm:git:git@github.com:junkdog//kbdluv.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>sonatype-nexus-snapshots</id>
