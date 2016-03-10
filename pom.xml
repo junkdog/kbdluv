@@ -6,8 +6,9 @@
 	<groupId>net.onedaybeard.kbdluv</groupId>
 	<artifactId>kbdluv-artemis</artifactId>
 	<name>kbdluv-artemis</name>
-	<version>0.2.0-SNAPSHOT</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<description>shortcuts for libgdx/artemis-odb</description>
+	<url>https://github.com/junkdog/kbdluv</url>
 
 	<properties>
 		<gdx.version>1.9.2</gdx.version>
@@ -26,6 +27,22 @@
 		<url>https://github.com/junkdog/kbdluv/issues</url>
 		<system>GitHub Issues</system>
 	</issueManagement>
+
+	<developers>
+		<developer>
+			<name>Adrian Papari</name>
+			<email>junkdog@onedaybeard.net</email>
+			<id>junkdog</id>
+			<timezone>1</timezone>
+			<roles>
+				<role>owner</role>
+				<role>developer</role>
+			</roles>
+			<properties>
+				<twitter>@junkdogAP</twitter>
+			</properties>
+		</developer>
+	</developers>
 
 	<scm>
 		<url>https://github.com/junkdog/kbdluv/</url>
