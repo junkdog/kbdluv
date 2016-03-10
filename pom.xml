@@ -172,6 +172,7 @@
 					<useReleaseProfile>false</useReleaseProfile>
 					<releaseProfiles>release</releaseProfiles>
 					<goals>deploy</goals>
+					<tagNameFormat>kbdluv-@{project.version}</tagNameFormat>
 				</configuration>
 			</plugin>
 		</plugins>
