@@ -17,6 +17,22 @@ Easy shortcuts for libgdx/artemis.
 - Register the input processor as you normally would.
 
 
+## Getting Started
+
+#### Maven
+```xml
+<dependency>
+	<groupId>net.onedaybeard.kbdluv</groupId>
+	<artifactId>kbdluv-artemis</artifactId>
+	<version>0.1.1</version>
+</dependency>
+```
+
+#### Gradle
+```groovy
+  dependencies { compile "net.onedaybeard.artemis:kbdluv-artemis:0.1.1" }
+```
+
 #### Example
 
 Method parameters for shortcuts are guaranteed to never be null.
