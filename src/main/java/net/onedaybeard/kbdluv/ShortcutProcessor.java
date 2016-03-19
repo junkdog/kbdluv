@@ -69,6 +69,10 @@ public abstract class ShortcutProcessor extends InputAdapter {
 		return shortcuts;
 	}
 
+	/**
+	 * Rebuilds the modifier key state. May need to call this when
+	 * switching between processors.
+	 */
 	public void refreshState() {
 		modState = 0;
 		if (isModifierKeyPressed(CONTROL_LEFT))

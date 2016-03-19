@@ -10,7 +10,7 @@ Easy shortcuts for libgdx/artemis.
  - `getEntity` can return null if no shortcut methods take an Entity
    or Component parameter
 - Create a method, annotate it with `@Shortcut`. Method can take 4 forms:
-  1. `zeroarguments()`
+  1. `zeroArguments()`
   1. `withEntity(Entity e)` (see getEntity())
   1. `withEntityAndComponent(Entity e, Position posiiton)`
   1. `withComponent(Position posiiton)`
@@ -24,7 +24,7 @@ Easy shortcuts for libgdx/artemis.
 <dependency>
 	<groupId>net.onedaybeard.kbdluv</groupId>
 	<artifactId>kbdluv-artemis</artifactId>
-	<version>0.1.1</version>
+	<version>0.2.0</version>
 </dependency>
 ```
 
