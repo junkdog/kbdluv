@@ -2,6 +2,7 @@ package net.onedaybeard.kbdluv;
 
 import com.artemis.Entity;
 import com.artemis.World;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.IntMap;
 import net.onedaybeard.kbdluv.reflect.MethodInvoker;
@@ -66,6 +67,21 @@ public abstract class ShortcutProcessor extends InputAdapter {
 		}
 
 		return shortcuts;
+	}
+
+	public void refreshState() {
+		modState = 0;
+		if (isModifierKeyPressed(CONTROL_LEFT))
+			modState |= MOD_CTRL;
+		if (isModifierKeyPressed(SHIFT_LEFT))
+			modState |= MOD_SHIFT;
+		if (isModifierKeyPressed(ALT_LEFT))
+			modState |= MOD_ALT;
+	}
+
+	private boolean isModifierKeyPressed(int key) {
+		return Gdx.input.isKeyPressed(key)
+			|| Gdx.input.isKeyPressed(key + 1);
 	}
 
 	@Override
