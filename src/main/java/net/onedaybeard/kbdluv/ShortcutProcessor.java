@@ -5,6 +5,7 @@ import com.artemis.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.utils.IntMap;
+import com.badlogic.gdx.utils.SerializationException;
 import net.onedaybeard.kbdluv.reflect.MethodInvoker;
 import net.onedaybeard.kbdluv.reflect.MethodInvokerFactory;
 
@@ -129,7 +130,7 @@ public abstract class ShortcutProcessor extends InputAdapter {
 				consumedEvent = false;
 				return false;
 			}
-		} catch (ReflectiveOperationException e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 	}
