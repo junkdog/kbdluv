@@ -30,7 +30,7 @@ Easy shortcuts for libgdx/artemis.
 
 #### Gradle
 ```groovy
-  dependencies { compile "net.onedaybeard.artemis:kbdluv-artemis:0.1.1" }
+  dependencies { compile "net.onedaybeard.artemis:kbdluv-artemis:0.2.1" }
 ```
 
 #### Example
