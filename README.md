@@ -24,13 +24,13 @@ Easy shortcuts for libgdx/artemis.
 <dependency>
 	<groupId>net.onedaybeard.kbdluv</groupId>
 	<artifactId>kbdluv-artemis</artifactId>
-	<version>0.2.2</version>
+	<version>0.2.3</version>
 </dependency>
 ```
 
 #### Gradle
 ```groovy
-  dependencies { compile "net.onedaybeard.artemis:kbdluv-artemis:0.2.2" }
+  dependencies { compile "net.onedaybeard.artemis:kbdluv-artemis:0.2.3" }
 ```
 
 #### Example

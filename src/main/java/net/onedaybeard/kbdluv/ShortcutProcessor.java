@@ -107,11 +107,11 @@ public abstract class ShortcutProcessor extends InputAdapter {
 		boolean wasConsumed = consumedEvent;
 
 		if (isModKey(CONTROL_LEFT, keycode)) {
-			modState &= ~(1 << MOD_CTRL);
+			modState &= ~MOD_CTRL;
 		} else if (isModKey(ALT_LEFT, keycode)) {
-			modState &= ~(1 << MOD_ALT);
+			modState &= ~MOD_ALT;
 		} else if (isModKey(SHIFT_LEFT, keycode)) {
-			modState &= ~(1 << MOD_SHIFT);
+			modState &= ~MOD_SHIFT;
 		}
 
 		consumedEvent = false;
